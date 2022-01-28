@@ -6,10 +6,13 @@ def index(request):
     # Query database for the list of all categories, ordered by likes descending
     # Choose (at most) top 5
     category_list = Category.objects.order_by('-likes')[:5]
+    # Query database of most viewed pages, choosing top 5
+    page_list = Page.objects.order_by('-views')[:5]
 
     context_dict = {}
     context_dict['boldmessage'] = 'Crunchy, creamy, cookie, candy, cupcake!'
     context_dict['categories'] = category_list
+    context_dict['pages'] = page_list
 
     # Return a rendered response to send to the client.
     # We make use of the shortcut function to make our lives easier.
